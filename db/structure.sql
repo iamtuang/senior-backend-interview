@@ -241,7 +241,8 @@ CREATE TABLE public.products (
     price_cents integer DEFAULT 0 NOT NULL,
     price_currency character varying DEFAULT 'USD'::character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    on_shelf integer DEFAULT 0 NOT NULL
 );
 
 
@@ -540,6 +541,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200908151850'),
 ('20200908224208'),
 ('20200909133724'),
-('20200916154424');
+('20200916154424'),
+('20221117132932');
 
 

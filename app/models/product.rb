@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   has_many :inventory
 
   def in_stock_count
-    inventory.on_shelf.count
+    on_shelf
   end
 
   def needed_inventory_count

@@ -13,6 +13,7 @@ gem 'sass-rails', '>= 6'
 gem 'scenic', '~> 1.5'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
+gem 'counter_culture', '~> 3.3'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
