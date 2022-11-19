@@ -17,21 +17,21 @@ RSpec.describe Product do
     it 'returns 0 if there are more units in the inventory than sold' do
       create(:order_line_item, order: order, product: product, quantity: quantity - 1)
 
-      expect(product.needed_inventory_count).to eq(0)
+      expect(product.reload.needed_inventory_count).to eq(0)
       expect(other_product.needed_inventory_count).to eq(0)
     end
 
     it 'returns 0 if there are exactly the same units in the inventory than sold' do
       create(:order_line_item, order: order, product: product, quantity: quantity)
 
-      expect(product.needed_inventory_count).to eq(0)
+      expect(product.reload.needed_inventory_count).to eq(0)
       expect(other_product.needed_inventory_count).to eq(0)
     end
 
     it 'returns the deficit in the inventory' do
       create(:order_line_item, order: order, product: product, quantity: quantity + 1)
 
-      expect(product.needed_inventory_count).to eq(1)
+      expect(product.reload.needed_inventory_count).to eq(1)
       expect(other_product.needed_inventory_count).to eq(0)
     end
 
@@ -41,8 +41,8 @@ RSpec.describe Product do
 
       create(:order_line_item, order: other_order, product: product, quantity: 1)
       create(:order_line_item, order: other_order, product: other_product, quantity: quantity + 1)
-      expect(product.needed_inventory_count).to eq(1)
-      expect(other_product.needed_inventory_count).to eq(1)
+      expect(product.reload.needed_inventory_count).to eq(1)
+      expect(other_product.reload.needed_inventory_count).to eq(1)
     end
   end
 end
