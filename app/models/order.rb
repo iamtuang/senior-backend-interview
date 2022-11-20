@@ -32,6 +32,12 @@ class Order < ApplicationRecord
     inventories.any?
   end
 
+  # bug: order which is already been fulfilled (all of its items has been shipped) is still regonized as fulfillable.
+  # can be fixed as follow:
+  #   def fulfillable?
+  #     !fulfilled? && line_items.all?(&:fulfillable?)
+  #   end
+  # we could add a column to order to check for its fulfillment status instead of querying to inventories everytime.
   def fulfillable?
     line_items.all?(&:fulfillable?)
   end
